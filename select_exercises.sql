@@ -1,12 +1,12 @@
 use codeup_test_db;
 
-select name AS 'Pink floyd albums';
+select name AS 'Pink floyd albums'
 from albums where artist = 'Pink Floyd';
 
-select release_date AS 'the year sgt. peppers''s lonely hearts club band was released';
+select release_date AS 'the year sgt. peppers''s lonely hearts club band was released'
 from albums where name = 'Sgt. Pepper''s Lonely Hearts Club Band';
 
-select genre AS 'the genre of nevermind';
+select genre AS 'the genre of nevermind'
 from albums where name = 'Nevermind';
 
 select name as 'the albums released in the 90s'
