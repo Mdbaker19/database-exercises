@@ -32,3 +32,8 @@ WHERE LEFT(city,1) NOT IN ('A', 'E', 'I', 'O', 'U');
 SELECT name FROM students
 WHERE marks > 75
 ORDER BY RIGHT(name, 3), id;
+
+SELECT name FROM employee
+WHERE salary > 2000 AND
+        months < 10
+ORDER BY employee_id;
