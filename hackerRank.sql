@@ -25,3 +25,10 @@ UNION
  FROM station
  ORDER BY LENGTH(city) DESC, city
  LIMIT 1);
+
+SELECT DISTINCT city FROM station
+WHERE LEFT(city,1) NOT IN ('A', 'E', 'I', 'O', 'U');
+
+SELECT name FROM students
+WHERE marks > 75
+ORDER BY RIGHT(name, 3), id;
