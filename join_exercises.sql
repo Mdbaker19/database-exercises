@@ -35,14 +35,14 @@ SELECT DISTINCT dept_name FROM departments;
 
 SELECT DISTINCT title from titles;
 
-SELECT title AS Title, COUNT(title)
+SELECT title AS Title, COUNT(*) AS Count
 FROM titles
 LEFT JOIN employees AS emp ON titles.emp_no = emp.emp_no
 LEFT JOIN dept_manager AS dm ON emp.emp_no = dm.emp_no
 LEFT JOIN departments AS d on dm.dept_no = d.dept_no
-# WHERE titles.to_date = '9999-01-01' AND d.dept_name = 'Customer Service'
+WHERE titles.to_date > NOW() AND d.dept_name = 'Customer Service'
 # WHERE d.dept_name = 'Customer Service'
-WHERE titles.to_date = '9999-01-01'
+# WHERE titles.to_date > NOW()
 GROUP BY title;
 
 
