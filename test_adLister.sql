@@ -1,6 +1,6 @@
 # use adlist;
-drop table if exists category;
 drop table if exists ad_category;
+drop table if exists category;
 drop table if exists ad;
 drop table if exists users;
 # create table users (
@@ -67,6 +67,28 @@ CREATE TABLE ad_category(
     FOREIGN KEY (category_id) references category (id)
 );
 
+INSERT INTO users(email, password) VALUES ('matt@matt.matt', 'password1');
+INSERT INTO users(email, password) VALUES ('mandy@dog.cat', 'password2');
 
+DESCRIBE users;
+SELECT * FROM users;
 
+INSERT INTO ad(title, description, category, user_id) VALUES ('looking for animal', 'want to buy', 'looking for', 2);
+INSERT INTO ad(title, description, category, user_id) VALUES ('for sale bike', 'bike for sale', 'sales', 1);
+INSERT INTO ad(title, description, category, user_id) VALUES ('for sale car', 'car for sale', 'sales', 1);
 
+DESCRIBE ad;
+SELECT * FROM ad;
+
+INSERT INTO category(name) VALUES ('sale');
+INSERT INTO category(name) VALUES ('looking for');
+
+DESCRIBE category;
+SELECT * FROM category;
+
+INSERT INTO ad_category(ad_id, category_id) VALUES(1, 2);
+INSERT INTO ad_category(ad_id, category_id) VALUES(2, 1);
+INSERT INTO ad_category(ad_id, category_id) VALUES(3, 1);
+
+DESCRIBE ad_category;
+SELECT * FROM ad_category;
