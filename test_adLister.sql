@@ -50,7 +50,7 @@ CREATE TABLE ad(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    category VARCHAR(255) NOT NULL,
+    category VARCHAR(255),
     user_id INT UNSIGNED,
     FOREIGN KEY (user_id) references users (id)
 );
@@ -76,19 +76,58 @@ SELECT * FROM users;
 INSERT INTO ad(title, description, category, user_id) VALUES ('looking for animal', 'want to buy', 'looking for', 2);
 INSERT INTO ad(title, description, category, user_id) VALUES ('for sale bike', 'bike for sale', 'sales', 1);
 INSERT INTO ad(title, description, category, user_id) VALUES ('for sale car', 'car for sale', 'sales', 1);
+INSERT INTO ad(title, description, user_id) values ('for sale tv', 'tv for sale, obo', 1);
 
 DESCRIBE ad;
 SELECT * FROM ad;
 
 INSERT INTO category(name) VALUES ('sale');
 INSERT INTO category(name) VALUES ('looking for');
+INSERT INTO category(name) VALUES ('meet up');
+INSERT INTO category(name) VALUES ('activities');
+INSERT INTO category(name) VALUES ('environment');
+INSERT INTO category(name) VALUES ('service');
+INSERT INTO category(name) VALUES ('electronics');
 
 DESCRIBE category;
 SELECT * FROM category;
 
-INSERT INTO ad_category(ad_id, category_id) VALUES(1, 2);
+INSERT INTO ad_category(ad_id, category_id) VALUES(1, 1);
 INSERT INTO ad_category(ad_id, category_id) VALUES(2, 1);
 INSERT INTO ad_category(ad_id, category_id) VALUES(3, 1);
+INSERT INTO ad_category(ad_id, category_id) VALUES(3, 2);
+INSERT INTO ad_category(ad_id, category_id) VALUES(3, 3);
+
+
+
+INSERT INTO ad_category(ad_id, category_id) VALUES(4, 3);
+INSERT INTO ad_category(ad_id, category_id) VALUES(4, 4);
+INSERT INTO ad_category(ad_id, category_id) VALUES(4, 5);
+INSERT INTO ad_category(ad_id, category_id) VALUES(4, 6);
+INSERT INTO ad_category(ad_id, category_id) VALUES(4, 2);
 
 DESCRIBE ad_category;
-SELECT * FROM ad_category;
+SELECT * FROM ad_category WHERE ad_id = 4;
+
+
+SELECT name FROM category WHERE id IN (
+    SELECT category_id
+    FROM ad_category
+    WHERE ad_id = 4
+    );
+
+
+
+# enum this list ??
+
+# ALTER TABLE ad where ad id = 4 change its null cat to the full list after
+
+SELECT title FROM ad
+WHERE id IN (
+    SELECT ad_id
+    FROM ad_category
+    WHERE category = 'sale'
+          );
+
+
+# SELECT * FROM

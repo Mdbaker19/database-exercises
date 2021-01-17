@@ -63,9 +63,21 @@ JOIN titles t
     on emp.emp_no = t.emp_no
 JOIN salaries s
     on emp.emp_no = s.emp_no
-WHERE s.to_date = '9999-01-01' AND t.title = 'Manager'
-GROUP BY dept_name, CONCAT(emp.first_name, ' ', emp.last_name), s.salary;
+WHERE s.to_date > NOW();
+# GROUP BY dept_name, CONCAT(emp.first_name, ' ', emp.last_name), s.salary;
 
+
+SELECT DISTINCT dept_name, CONCAT(emp.first_name, ' ', emp.last_name), s.salary
+FROM departments AS dpt
+         JOIN dept_manager dm
+              ON dpt.dept_no = dm.dept_no
+         JOIN employees emp
+              ON dm.emp_no = emp.emp_no
+         JOIN titles t
+              on emp.emp_no = t.emp_no
+         JOIN salaries s
+              on emp.emp_no = s.emp_no
+WHERE s.to_date > NOW();
 
 
 
